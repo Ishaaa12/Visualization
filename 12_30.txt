@@ -1,0 +1,13 @@
+import pandas as pd
+import plotly.graph_objects as go
+
+df = pd.read_csv('dataset.csv')
+
+fig = go.Figure(go.Scatter(x = df['Time Serie'], y = df['AUSTRALIA - AUSTRALIAN DOLLAR/US$'],
+                  name='australia'))
+
+fig.update_layout(title='Analysis for Australia',
+                   plot_bgcolor='rgb(230, 230,230)',
+                   showlegend=True)
+
+fig.show(
