@@ -1,0 +1,84 @@
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+import pandas as pd
+import plotly.graph_objs as go
+
+app = dash.Dash()
+
+df = pd.read_csv('Table4.csv')
+header = html.H1("Currency Dataset Analysis-TEAM-18")
+graph1=dcc.Graph(
+    figure={
+        'data': [
+            go.Scatter(
+                x = df['Countries'],
+                y = df['Average Change in Currency'],
+            )
+        ],
+        'layout': go.Layout(
+            title='Average Change in Currency  Values',
+            plot_bgcolor='rgb(230, 230,230)')
+    }
+)
+
+graph2=dcc.Graph(
+    figure={
+        'data': [
+            go.Scatter(
+                x = df['Countries'],
+                y = df['Currency Value/US$'],
+            )
+        ],
+        'layout': go.Layout(
+            title='Average Currency  Values',
+            plot_bgcolor='rgb(230, 230,230)')
+    }
+)
+graph3=dcc.Graph(
+    figure={
+        'data': [
+            go.Scatter(
+                x = df['Countries'],
+                y = df['Jan 2007 - November 2007'],
+            )
+        ],
+        'layout': go.Layout(
+            title='Before Recession',
+            plot_bgcolor='rgb(230, 230,230)')
+    }
+)
+graph4=dcc.Graph(
+    figure={
+        'data': [
+            go.Scatter(
+                x = df['Countries'],
+                y = df['Dec 2007 - June 2009'],
+            )
+        ],
+        'layout': go.Layout(
+            title='During Recession',
+            plot_bgcolor='rgb(230, 230,230)')
+    }
+)
+grph5=dcc.Graph(
+    figure={
+        'data': [
+            go.Scatter(
+                x = df['Countries'],
+                y = df['July 2009 - June 2010'],
+            )
+        ],
+        'layout': go.Layout(
+            title='After Recession',
+            plot_bgcolor='rgb(230, 230,230)')
+    }
+)
+row1 = html.Div([graph1, graph2],)
+
+row2 = html.Div([graph3, graph4,grph5])
+
+layout = html.Div([header, row1, row2], style={"text-align": "center"})
+app.layout = layout
+if __name__ == '__main__':
+    app.run_server()

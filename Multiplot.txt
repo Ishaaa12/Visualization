@@ -1,0 +1,15 @@
+import plotly.express as px
+
+import dash
+import dash_core_components as dcc
+
+import dash_html_components as html
+
+import pandas as pd
+import plotly.graph_objs as go
+
+df = pd.read_csv('ar.csv')
+fig = px.line(df, x="Time Serie", y="Currency Value", color='Countries')
+
+
+fig.show()
